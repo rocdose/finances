@@ -48,6 +48,7 @@ class LaBanquePostaleImporter implements ImporterInterface
                     break;
                 case 5:
                     $this->import['information']['credit'] = $data[1];
+                    $this->currentCredit = $this->lastCredit = str_replace(',', '.', $data[1]);
                     break;
             }
             if ($row >= 5) { // account information stop at line 5
@@ -59,11 +60,16 @@ class LaBanquePostaleImporter implements ImporterInterface
     public function getAccountActivities ()
     {
         while (($data = fgetcsv($this->handle, 1000, ";")) !== FALSE) {
-            $this->import['activities'][] = array(
-                'date' => $data[0],
-                'description' => $data[1],
-                'amount' => $data[2],
+            $this->lastCredit = $this->currentCredit;
+            $this->currentCredit -= str_replace(',', '.', $data[2]);
+            $activity = array(
+                'date'          => $data[0],
+                'description'   => utf8_encode($data[1]), // twig needs utf8 encoding (not happy with the ° character)
+                'amount'        => $data[2],
+                'lastCredit'    => str_replace('.', ',', $this->lastCredit),
+                'currentCredit' => str_replace('.', ',', $this->currentCredit),
             );
+            $this->import['activities'][] = $activity;
         }
     }
 }

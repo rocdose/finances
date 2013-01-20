@@ -1,7 +1,30 @@
-Account number: {{ information.number }} <br />
-Type: {{ information.type }} <br />
-Credit: {{ information.credit }} {{ information.currency }} on {{ information.date }} <br />
+<div>
+    Account number: {{ information.number }} <br />
+    Type: {{ information.type }} <br />
+    Credit: {{ information.credit }} {{ information.currency }} on {{ information.date }} <br />
+</div>
 
-{% for activity in activities %}
-    {{ activity.date }} {{ activity.description }} {{ activity.amount }} <br />
-{% endfor %}
+<div style="padding-top: 30px">
+    <table>
+    <thead>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Before</th>
+        <th>Amount</th>
+        <th>Then</th>
+    {% for activity in activities %}
+        <tr>
+            <td>{{ activity.date }}</td>
+            <td>{{ activity.description }}</td>
+            <td>{{ activity.currentCredit }}</td>
+            {% if activity.amount < 0 %}
+            <td style="color:red">
+            {% else %}
+            <td style="color:green">
+            {% endif %}
+            {{ activity.amount }}</td>
+            <td>{{ activity.lastCredit }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
