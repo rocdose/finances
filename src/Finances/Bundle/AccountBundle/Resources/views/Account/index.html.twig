@@ -1,0 +1,7 @@
+Account number: {{ information.number }} <br />
+Type: {{ information.type }} <br />
+Credit: {{ information.credit }} {{ information.currency }} on {{ information.date }} <br />
+
+{% for activity in activities %}
+    {{ activity.date }} {{ activity.description }} {{ activity.amount }} <br />
+{% endfor %}
