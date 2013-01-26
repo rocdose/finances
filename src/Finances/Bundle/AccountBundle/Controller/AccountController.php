@@ -13,13 +13,28 @@ class AccountController extends Controller
      * @Route("/")
      * @Template()
      */
-    public function indexAction()
+    public function indexAction ()
+    {
+        $import = $this->import();
+        return array('activities' => $import['activities'], 'information' => $import['information']);
+    }
+
+    /**
+     * @Route("/visual")
+     * @Template()
+     */
+    public function visualAction ()
+    {
+        $import = $this->import();
+        return array('activities' => $import['activities'], 'information' => $import['information']);
+    }
+
+    private function import ()
     {
         $importer = ImporterFactory::make('LaBanquePostale', 'releve.csv');
         if (!isset($importer)) {
             return array();
         }
-        $import = $importer->import();
-        return array('activities' => $import['activities'], 'information' => $import['information']);
+        return $importer->import();
     }
 }

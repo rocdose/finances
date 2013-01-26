@@ -5,6 +5,13 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        {% javascripts
+            '../vendor/flot/flot/jquery.js'
+            '../vendor/flot/flot/jquery.flot.js'
+            '../vendor/flot/flot/jquery.flot.time.js'
+        %}
+        <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
     </head>
     <body>
         {% block body %}{% endblock %}

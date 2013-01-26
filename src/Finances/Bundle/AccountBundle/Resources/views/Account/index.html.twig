@@ -1,3 +1,6 @@
+{% extends "FinancesAccountBundle::base.html.twig" %}
+
+{% block body %}
 <div>
     Account number: {{ information.number }} <br />
     Type: {{ information.type }} <br />
@@ -12,6 +15,7 @@
         <th>Before</th>
         <th>Amount</th>
         <th>Then</th>
+    </thead>
     {% for activity in activities %}
         <tr>
             <td>{{ activity.date }}</td>
@@ -28,3 +32,4 @@
     {% endfor %}
     </table>
 </div>
+{% endblock %}

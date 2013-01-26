@@ -63,13 +63,15 @@ class LaBanquePostaleImporter implements ImporterInterface
             $this->lastCredit = $this->currentCredit;
             $this->currentCredit -= str_replace(',', '.', $data[2]);
             $activity = array(
-                'date'          => $data[0],
+                'date'          => \DateTime::createFromFormat('d/m/Y', $data[0])->format('Y/m/d'),
                 'description'   => utf8_encode($data[1]), // twig needs utf8 encoding (not happy with the ° character)
                 'amount'        => $data[2],
-                'lastCredit'    => str_replace('.', ',', $this->lastCredit),
-                'currentCredit' => str_replace('.', ',', $this->currentCredit),
+                'lastCredit'    => $this->lastCredit,
+                'currentCredit' => $this->currentCredit,
             );
             $this->import['activities'][] = $activity;
         }
+
+        $this->import['activities'] = array_reverse($this->import['activities']);
     }
 }

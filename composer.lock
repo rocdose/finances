@@ -1,5 +1,5 @@
 {
-    "hash": "afc6c8c8b9fe2252c0f74737aa59060b",
+    "hash": "cedb9d9cfd3e8002c3517df194671dd7",
     "packages": [
         {
             "name": "doctrine/common",
@@ -271,6 +271,17 @@
                 "database",
                 "orm"
             ]
+        },
+        {
+            "name": "flot/flot",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:flot/flot.git",
+                "reference": "master"
+            },
+            "type": "library",
+            "time": "2013-01-14 11:45:18"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -1252,15 +1263,14 @@
             ]
         }
     ],
-    "packages-dev": [
-
-    ],
+    "packages-dev": null,
     "aliases": [
 
     ],
     "minimum-stability": "stable",
     "stability-flags": {
         "twig/extensions": 20,
-        "kriswallsmith/assetic": 20
+        "kriswallsmith/assetic": 20,
+        "flot/flot": 20
     }
 }

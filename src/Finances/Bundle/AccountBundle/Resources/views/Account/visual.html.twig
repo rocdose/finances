@@ -1,0 +1,42 @@
+{% extends "FinancesAccountBundle::base.html.twig" %}
+
+{% block body %}
+<div>
+    Account number: {{ information.number }} <br />
+    Type: {{ information.type }} <br />
+    Credit: {{ information.credit }} {{ information.currency }} on {{ information.date }} <br />
+</div>
+
+<div id="expenditures" style="width:100%;height:900px"></div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    var expenditures = [
+        {% for activity in activities %}
+        [(new Date("{{ activity.date }}")).getTime(), {{ activity.currentCredit }}],
+        {% endfor %}
+    ];
+
+    var options = {
+        xaxis: {
+            mode: "time",
+            minTickSize: [1, "day"]
+        },
+        yaxis: {
+            min: 0
+        }
+    }
+
+    var placeholder = $('#expenditures');
+    var plot = $.plot(placeholder, [ expenditures ], options);
+
+    var o;
+    o = plot.pointOffset({ x: (new Date("2012/10/16")).getTime(), y: 3200});
+    placeholder.append('<div style="position:absolute;left:' + (o.left - 6) + 'px;top:' + o.top + 'px;color:#666;font-size:smaller">So rich!</div>');
+
+    o = plot.pointOffset({ x: (new Date("2012/11/10")).getTime(), y: 3200});
+    placeholder.append('<div style="position:absolute;left:' + (o.left - 4) + 'px;top:' + o.top + 'px;color:#666;font-size:smaller">POOOOOOOOOOOOOOOOOOOOOOOOOOOOR</div>');
+
+});
+</script>
+{% endblock %}
