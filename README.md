@@ -1,1 +1,3 @@
 Finances
+
+Money management tool.
