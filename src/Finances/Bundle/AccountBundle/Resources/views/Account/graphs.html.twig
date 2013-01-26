@@ -1,5 +1,7 @@
 {% extends "FinancesAccountBundle::base.html.twig" %}
 
+{% block title %}Graphs{% endblock %}
+
 {% block body %}
 <div>
     Account number: {{ information.number }} <br />
@@ -7,15 +9,25 @@
     Credit: {{ information.credit }} {{ information.currency }} on {{ information.date }} <br />
 </div>
 
-<div id="expenditures" style="width:100%;height:900px"></div>
+<div id="graph" style="width:100%;height:900px"></div>
 
 <script type="text/javascript">
 $(document).ready(function() {
     var expenditures = [
-        {% for activity in activities %}
-        [(new Date("{{ activity.date }}")).getTime(), {{ activity.currentCredit }}],
+        {% for entry in entries %}
+        [(new Date("{{ entry.date }}")).getTime(), {{ -entry.amount }}],
         {% endfor %}
     ];
+
+    var balance = [
+        {% for entry in entries %}
+        [(new Date("{{ entry.date }}")).getTime(), {{ entry.lastCredit }}],
+        {% endfor %}
+    ];
+
+    var series = new Array();
+    series.push({label: "Expenditures", data: expenditures});
+    series.push({label: "Account balance", data: balance});
 
     var options = {
         xaxis: {
@@ -27,15 +39,16 @@ $(document).ready(function() {
         }
     }
 
-    var placeholder = $('#expenditures');
-    var plot = $.plot(placeholder, [ expenditures ], options);
+    var placeholder = $('#graph');
+    var plot = $.plot(placeholder, series, options);
 
-    var o;
+    {# var o;
     o = plot.pointOffset({ x: (new Date("2012/10/16")).getTime(), y: 3200});
-    placeholder.append('<div style="position:absolute;left:' + (o.left - 6) + 'px;top:' + o.top + 'px;color:#666;font-size:smaller">So rich!</div>');
+    placeholder.append('<div style="position:absolute;left:' + (o.left - 6) + 'px;top:' + o.top + 'px;color:#666;font-size:smaller">So rich!</div>'); 
 
     o = plot.pointOffset({ x: (new Date("2012/11/10")).getTime(), y: 3200});
     placeholder.append('<div style="position:absolute;left:' + (o.left - 4) + 'px;top:' + o.top + 'px;color:#666;font-size:smaller">POOOOOOOOOOOOOOOOOOOOOOOOOOOOR</div>');
+#}
 
 });
 </script>

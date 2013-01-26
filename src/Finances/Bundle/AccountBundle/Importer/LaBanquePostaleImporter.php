@@ -69,9 +69,8 @@ class LaBanquePostaleImporter implements ImporterInterface
                 'lastCredit'    => $this->lastCredit,
                 'currentCredit' => $this->currentCredit,
             );
-            $this->import['activities'][] = $activity;
+            $this->import['entries'][] = $activity;
         }
 
-        $this->import['activities'] = array_reverse($this->import['activities']);
     }
 }

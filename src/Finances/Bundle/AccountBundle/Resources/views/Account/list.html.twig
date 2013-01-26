@@ -16,18 +16,18 @@
         <th>Amount</th>
         <th>Then</th>
     </thead>
-    {% for activity in activities %}
+    {% for entry in entries %}
         <tr>
-            <td>{{ activity.date }}</td>
-            <td>{{ activity.description }}</td>
-            <td>{{ activity.currentCredit }}</td>
-            {% if activity.amount < 0 %}
+            <td>{{ entry.date }}</td>
+            <td>{{ entry.description }}</td>
+            <td>{{ entry.currentCredit }}</td>
+            {% if entry.amount < 0 %}
             <td style="color:red">
             {% else %}
             <td style="color:green">
             {% endif %}
-            {{ activity.amount }}</td>
-            <td>{{ activity.lastCredit }}</td>
+            {{ entry.amount }}</td>
+            <td>{{ entry.lastCredit }}</td>
         </tr>
     {% endfor %}
     </table>
