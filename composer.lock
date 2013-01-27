@@ -1,5 +1,5 @@
 {
-    "hash": "cedb9d9cfd3e8002c3517df194671dd7",
+    "hash": "7e4bddd77fbd4c3da117986fea47bdd8",
     "packages": [
         {
             "name": "doctrine/common",
@@ -712,6 +712,17 @@
             ]
         },
         {
+            "name": "phiamo/MopaBootstrapBundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:phiamo/MopaBootstrapBundle.git",
+                "reference": "master"
+            },
+            "type": "library",
+            "time": "2013-01-09 16:27:46"
+        },
+        {
             "name": "sensio/distribution-bundle",
             "version": "v2.1.7",
             "target-dir": "Sensio/Bundle/DistributionBundle",
@@ -1271,6 +1282,7 @@
     "stability-flags": {
         "twig/extensions": 20,
         "kriswallsmith/assetic": 20,
-        "flot/flot": 20
+        "flot/flot": 20,
+        "phiamo/mopabootstrapbundle": 20
     }
 }

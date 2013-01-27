@@ -12,7 +12,6 @@ class AccountFilter
     
     private $availableFilters = array(
         self::GROCERIES => 'Groceries',
-        self::HOUSING   => 'Housing',
         self::MOVIES    => 'Movies',
         self::CLOTHING  => 'Clothing',
         self::PHONE     => 'Phone',
@@ -118,5 +117,10 @@ class AccountFilter
         return array(
             "\b(benetton|gal.lafayette|celio)\b",
         );
+    }
+
+    public function getFilters()
+    {
+        return $this->availableFilters;
     }
 }

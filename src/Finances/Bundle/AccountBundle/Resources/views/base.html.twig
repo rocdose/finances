@@ -1,1 +1,16 @@
 {% extends "::base.html.twig" %}
+
+{% block top %}
+<div>
+    Account number: {{ information.number }} <br />
+    Type: {{ information.type }} <br />
+    Credit: {{ information.credit }} {{ information.currency }} on {{ information.date }} <br />
+
+    <ul>
+        {% for filter in availableFilters %}
+        <li style="display:inline"><a href="{{ path('dashboard') }}{{ method }}/{{ activeFilters }}{{ filter }}+">{{ filter }}</a></li>
+        {% endfor %}
+        <li style="display:inline"><a href="{{ path('dashboard') }}{{ method }}">None</a></li>
+    </ul>
+</div>
+{% endblock %}

@@ -71,6 +71,5 @@ class LaBanquePostaleImporter implements ImporterInterface
             );
             $this->import['entries'][] = $activity;
         }
-
     }
 }
